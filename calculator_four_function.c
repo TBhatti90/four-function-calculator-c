@@ -60,5 +60,5 @@ double operation(double num1, double num2, char operator)
 	else if (operator == '/')
 		return (num1 / num2);
 
-	return 0;
+	return -1;
 }
