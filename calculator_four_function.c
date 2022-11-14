@@ -7,8 +7,8 @@ int main()
 {
 	char buf[20];
 	int c;
-	int num1;
-	int num2;
+	double num1;
+	double num2;
 	char operator;
 
 	printf("Please enter your first number: ");
@@ -19,7 +19,7 @@ int main()
 	else
 		while ((c = getchar()) != EOF && c != '\n')
 			;
-	if (sscanf(buf, "%d", &num1) == EOF)
+	if (sscanf(buf, "%lf", &num1) == EOF)
 		return -1;
 
 	printf("Please enter your second number: ");
@@ -30,7 +30,7 @@ int main()
 	else
 		while ((c = getchar()) != EOF && c != '\n')
 			;
-	if (sscanf(buf, "%d", &num2) == EOF)
+	if (sscanf(buf, "%lf", &num2) == EOF)
 		return -1;
 
 	printf("Please enter your operation character (e.g. '+', '-', '*', '/'): ");
@@ -44,7 +44,7 @@ int main()
 	if (sscanf(buf, "%c", &operator) == EOF)
 		return -1;
 
-	printf("The result is: %f\n", operation(num1, num2, operator));
+	printf("The result is: %0.2f\n", operation(num1, num2, operator));
 
 	return 0;
 }
