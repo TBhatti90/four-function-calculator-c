@@ -9,45 +9,54 @@ int main()
 	char buf[BUFLEN];
 	double num1;
 	double num2;
+	double result;
 	char operator;
 
 	printf("Please enter your first number: ");
 	if (conin(buf, BUFLEN) == -1)
 	{
-		printf("An error occurred, please try again");
+		printf("An error occurred, please try again\n");
 		return -1;
 	}
-	if (sscanf(buf, "%lf", &num1) == EOF)
+
+	if (sscanf(buf, "%lf", &num1) == 0)
 	{
-		printf("An error occurred, please try again");
+		printf("An error occurred, please try again\n");
 		return -1;
 	}
 
 	printf("Please enter your second number: ");
 	if (conin(buf, BUFLEN) == -1)
 	{
-		printf("An error occurred, please try again");
+		printf("An error occurred, please try again\n");
 		return -1;
 	}
-	if (sscanf(buf, "%lf", &num2) == EOF)
+	if (sscanf(buf, "%lf", &num2) == 0)
 	{
-		printf("An error occurred, please try again");
+		printf("An error occurred, please try again\n");
 		return -1;
 	}
 
 	printf("Please enter your operation character (e.g. '+', '-', '*', '/'): ");
 	if (conin(buf, BUFLEN) == -1)
 	{
-		printf("An error occurred, please try again");
+		printf("An error occurred, please try again\n");
 		return -1;
 	}
-	if (sscanf(buf, "%c", &operator) == EOF)
+	if (sscanf(buf, "%c", &operator) == 0)
 	{
-		printf("An error occurred, please try again");
+		printf("An error occurred, please try again\n");
 		return -1;
 	}
 
-	printf("The result is: %0.2f\n", operation(num1, num2, operator));
+	result = operation(num1, num2, operator);
+	if (result == -1)
+	{
+		printf("An error occurred, please try again\n");
+		return -1;
+	}
+
+	printf("The result is: %0.2f\n", result);
 
 	return 0;
 }
