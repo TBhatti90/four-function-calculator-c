@@ -1,48 +1,51 @@
 #include <stdio.h>
-#include <string.h>
+#include <conin.h>
+#define BUFLEN 20
 
 double operation(double num1, double num2, char operator);
 
 int main()
 {
-	char buf[20];
-	int c;
+	char buf[BUFLEN];
 	double num1;
 	double num2;
 	char operator;
 
 	printf("Please enter your first number: ");
-	if (fgets(buf, 20, stdin) == NULL)
+	if (conin(buf, BUFLEN) == -1)
+	{
+		printf("An error occurred, please try again");
 		return -1;
-	if (buf[strlen(buf) - 1] == '\n')
-		buf[strlen(buf) - 1] = '\0';
-	else
-		while ((c = getchar()) != EOF && c != '\n')
-			;
+	}
 	if (sscanf(buf, "%lf", &num1) == EOF)
+	{
+		printf("An error occurred, please try again");
 		return -1;
+	}
 
 	printf("Please enter your second number: ");
-	if (fgets(buf, 20, stdin) == NULL)
+	if (conin(buf, BUFLEN) == -1)
+	{
+		printf("An error occurred, please try again");
 		return -1;
-	if (buf[strlen(buf) - 1] == '\n')
-		buf[strlen(buf) - 1] = '\0';
-	else
-		while ((c = getchar()) != EOF && c != '\n')
-			;
+	}
 	if (sscanf(buf, "%lf", &num2) == EOF)
+	{
+		printf("An error occurred, please try again");
 		return -1;
+	}
 
 	printf("Please enter your operation character (e.g. '+', '-', '*', '/'): ");
-	if (fgets(buf, 20, stdin) == NULL)
+	if (conin(buf, BUFLEN) == -1)
+	{
+		printf("An error occurred, please try again");
 		return -1;
-	if (buf[strlen(buf) - 1] == '\n')
-		buf[strlen(buf) - 1] = '\0';
-	else
-		while ((c = getchar()) != EOF && c != '\n')
-			;
+	}
 	if (sscanf(buf, "%c", &operator) == EOF)
+	{
+		printf("An error occurred, please try again");
 		return -1;
+	}
 
 	printf("The result is: %0.2f\n", operation(num1, num2, operator));
 
@@ -58,7 +61,11 @@ double operation(double num1, double num2, char operator)
 	else if (operator == '*')
 		return (num1 * num1);
 	else if (operator == '/')
+	{
+		if (num2 == 0)
+			return -1;
 		return (num1 / num2);
+	}
 
 	return -1;
 }
