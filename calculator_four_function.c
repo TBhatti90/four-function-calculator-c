@@ -6,7 +6,7 @@ double operation(double num1, double num2, char operator);
 
 int main()
 {
-	char buf[BUFLEN];
+	char *buf;
 	double num1;
 	double num2;
 	double result;
